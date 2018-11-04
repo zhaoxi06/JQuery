@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>QQ列表展开收缩扩展</title>
+<style type="text/css">
+body,div,h3,ul,li{padding: 0;margin: 0;}
+li{list-style: none;}
+#box{
+	width: 14em;
+	border:2px solid #000;
+	margin: 0 auto;
+}
+.list{
+	text-indent: .5em;
+	background-color: #ccc;
+}
+h3{
+	color: #fff;
+	background-color: #345;
+}
+h3.active{
+	background: #485D74;
+}
+li{
+	text-indent: 1em;
+	border-bottom: 1px solid #999;
+}
+li.active{
+	background-color: #D8A7D3;
+}
+</style>
+</head>
+<body>
+<div id="box">
+	<div class="list">
+		<h3>我的好友</h3>
+		<ul>
+			<li>苗林</li>
+			<li>苗林</li>
+			<li>苗林</li>
+			<li>苗林</li>
+		</ul>
+	</div>
+	<div class="list">
+		<h3>企业好友</h3>
+		<ul>
+			<li>那个谁</li>
+			<li>那个谁</li>
+			<li>那个谁</li>
+			<li>那个谁</li>
+		</ul>
+	</div>
+	<div class="list">
+		<h3>黑名单</h3>
+		<ul>
+			<li>最丑的那个</li>
+			<li>最丑的那个</li>
+			<li>最丑的那个</li>
+			<li>最丑的那个</li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript" src="jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+$(function () {
+	$("ul").hide();
+	$("h3").on("click",function(){
+		if($(this).attr("class")){
+			$(this).removeClass("active");
+			$(this).next().hide();
+		}else{
+			$("h3").removeClass("active");
+			$("ul").hide();
+			$(this).addClass("active");
+			$(this).next().show();
+		}
+	});
+	$("li").click(function(){
+		if($(this).attr("class")){
+			$(this).removeClass("active");
+		}else{
+			$("li").filter(".active").removeClass("active");
+			$(this).addClass("active");
+		}
+	})
+});
+</script>
+</body>
+</html>

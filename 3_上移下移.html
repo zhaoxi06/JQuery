@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>上移下移</title>
+<style type="text/css">
+li{
+	margin: .5em;
+}
+</style>
+</head>
+<body>
+<ul>
+	<li>1. <button>上移</button> &nbsp;<button>下移</button></li>
+	<li>2. <button>上移</button> &nbsp;<button>下移</button></li>
+	<li>3. <button>上移</button> &nbsp;<button>下移</button></li>
+	<li>4. <button>上移</button> &nbsp;<button>下移</button></li>
+	<li>5. <button>上移</button> &nbsp;<button>下移</button></li>
+</ul>
+
+<script type="text/javascript" src="jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("button:even").click(function(){
+		$(this).parent().insertBefore($(this).parent().prev());
+	})
+	$("button:odd").click(function(){
+		$(this).parent().insertAfter($(this).parent().next());
+	})
+})
+</script>
+</body>
+</html>
