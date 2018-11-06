@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多层级鼠标右键菜单</title>
+<style type="text/css">
+body,ul,li{padding: 0;margin: 0;}
+ul{
+	border-top: 1px solid #000;
+	width: 162px;
+	height: 24px;
+	position: absolute;
+	top:8px;
+	right: -152px;
+}
+#list{
+	position: relative;
+}
+li{
+	list-style: none;
+	width: 160px;
+	height: 24px;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	position: relative;
+}
+li.active{
+	background: red;
+}
+</style>
+</head>
+<body>
+<ul id="list">
+	<li>新建1-1</li>
+	<li>新建1-2->
+		<ul>
+			<li>新建2-1</li>
+			<li>新建2-2</li>
+			<li>新建2-3->
+				<ul>
+					<li>新建3-1</li>
+					<li>新建3-2</li>
+					<li>新建3-3</li>
+					<li>新建3-4</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	<li>新建1-3</li>
+	<li>新建1-4->
+		<ul>
+			<li>新建4-1</li>
+			<li>新建4-2</li>
+			<li>新建4-3</li>
+		</ul>
+	</li>
+</ul>
+
+<script type="text/javascript" src="jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("ul").hide();
+	var onOff = true;
+	$(document).contextmenu(function(ev){
+		if(ev.which == 3){
+			if(onOff){
+				$("ul").eq(0).show();
+				$("ul").eq(0).css({"left":ev.pageX,"top":ev.pageY});
+			}else{
+				$("ul").eq(0).hide();
+			}
+			onOff = !onOff;
+		}
+		return false;
+	})
+	$("li").mouseover(function(){
+		$(this).siblings().removeClass("active");
+		$(this).addClass("active");
+		$(this).find("ul").eq(0).show();
+	})
+	$("li").mouseout(function(){
+		$(this).removeClass("active");
+		$(this).find("ul").eq(0).hide();
+	})
+})
+</script>
+</body>
+</html>

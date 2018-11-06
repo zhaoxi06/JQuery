@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>手风琴效果</title>
+<style type="text/css">
+body,ul,li{padding: 0;margin: 0;}
+li{list-style: none;}
+ul{
+	width: 22em;
+	height: 10em;
+	margin: 2em auto;
+}
+li{
+	width: 1.5em;
+	height: 100%;
+	float: left;
+}
+.red{
+	background: red;
+}
+.green{
+	background: green;
+}
+.orange{
+	background: orange;
+}
+.yellow{
+	background:yellow;
+}
+.pink{
+	background: pink;
+}
+</style>
+</head>
+<body>
+<ul>
+	<li class="red"></li>
+	<li class="green"></li>
+	<li class="orange"></li>
+	<li class="yellow"></li>
+	<li class="pink"></li>
+</ul>
+<script type="text/javascript" src="jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+$(function () {
+	var fini = true;
+	var oldLi = $("li").eq(4);
+	oldLi.css("width","16em");
+	var newLi;
+
+	$("li").mouseover(function(){
+		if($(this).get(0) == oldLi.get(0)) return;
+		if(!fini){
+			oldLi.stop(true,true);
+			newLi.stop(true,true);
+		}
+		fini = false;
+		oldLi.animate({width:24},500,"linear");
+		$(this).animate({width:256},500,"linear",function(){
+			oldLi = $(this);
+			fini = true;
+		});
+		newLi = $(this);
+	});
+
+})
+</script>
+</body>
+</html>
